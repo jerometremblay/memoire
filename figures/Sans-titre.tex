@@ -1,0 +1,35 @@
+détection des intersections
+	- n x n array
+		- O(n^2) mémoire
+		- O(n) temps
+	- hash table
+		- O(n) mémoire
+		- O(n log(n)) temps
+	- bkp
+		- O(n) mémoire
+		- O(n) temps
+
+changement du point de départ: Mot de lyndon
+	- énumération plus rapide : chemins possibles limités par le préfix du chemin courrant
+		- figure des chemins possibles
+	- changement d'alphabet
+		- énumération traditionnelle
+		- énumération à rotation prêt
+		
+traduction résultats expérimentaux gominos
+
+implémentation moderne
+
+
+Le troisième problème à résoudre est la détection des intersections. Nous présenterons trois solutions solutions possibles avec des caractéristiques différentes.
+
+Pour conserver un chemin de longeur $n$ dans $\Z^2$, on peut  allouer immédiatement la mémoire pour un ensemble de positions possibles. Un tableau $2n \times 2n$ contiendra toutes les positions atteignables par un chemin de longeur $n$ enracinés en $(n,n)$. Dans une telle structure de donnée, l'accès à une position spécifique se fait en temps constant. Par contre les besoins en mémoire sont  de l'ordre de $\bigo{n^2}$. 
+- avantages
+	structure de donnée native en informatique
+	accès en temps constant
+- désavantages
+	$\bigo{n^2}$ en mémoire 
+	on doit connaître $n$ au départ
+
+
+Une solution au problème utilise une autre approche. Au fur et à mesure qu'on progresse dans notre chemin, on conserve un historique de chaque position visitée.

@@ -1,0 +1,218 @@
+\documentclass[tikz]{standalone}
+
+\usetikzlibrary{calc}
+\usepackage{ifthen}
+
+\newcommand{\surround}[2]{\draw[rounded corners] ($#2-(1em,1em)$) rectangle ($#2 + (#1,#1) + (1em,1em)$);}
+\newcommand{\drawpointgrid}{
+\foreach \x in {0,1,...,15}
+  \foreach \y in {0,1,...,8}
+  {
+  \node[draw, circle, inner sep=0.05em, fill] at (\x,\y) {};
+  }
+
+\draw[rounded corners] ($(0,1) + (-1em,-1em)$) -- ($(0,1) + (-1em,1em)$) --
+				       ($(1,1) + (1em,1em)$) -- ($(1,0) + (1em,-1em)$) --
+				       ($(1,0) + (-1em,-1em)$) -- ($(1,1) + (-1em,-1em)$) -- cycle;
+
+
+\draw[rounded corners] ($(0,2) + (-1em,-1em)$) -- ($(0,3) + (-1em,1em)$) --
+				       ($(3,3) + (1em,1em)$) -- ($(3,0) + (1em,-1em)$) --
+				       ($(2,0) + (-1em,-1em)$) -- ($(2,2) + (-1em,-1em)$) -- cycle;
+
+
+\draw[rounded corners] ($(0,4) + (-1em,-1em)$) -- ($(0,7) + (-1em,1em)$) --
+				       ($(7,7) + (1em,1em)$) -- ($(7,0) + (1em,-1em)$) --
+				       ($(4,0) + (-1em,-1em)$) -- ($(4,4) + (-1em,-1em)$) -- cycle;
+
+\draw[rounded corners] ($(0,8) + (-1em, 1em)$) -- ($(0,8) + (-1em, -1em)$) -- ($(8,8) - (1em,1em)$) -- ($(8,0) + (-1em, -1em)$) -- ($(15,0) + (1em, -1em)$) -- ($(15,8) + (1em, 1.2em)$);
+
+}
+
+\newenvironment{pointgrid}
+{
+\begin{tikzpicture}[auto, >=latex, shorten >=.2em, scale=.83]
+\drawpointgrid
+}
+{
+\end{tikzpicture}
+}
+
+
+\begin{document}
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[label={[label distance=-.5em]\tiny (14,4)}] at (14,4) {};
+
+\node at (15,4) {} edge[->, red, thick] (14,4) ;
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[label={[label distance=-.5em]\tiny (14,4)}] at (14,4) {};
+\node at (15,4) {} edge[->, red, opacity=.5] (14,4);
+\node at (15,4) {} edge[->, green!50!black, bend left, thick] (7,2);
+\node at (14,4) {} edge[->, dotted, green!50!black, bend left, thick, in=160] (7,2);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[label={[label distance=-.5em]\tiny (14,4)}] at (14,4) {};
+\node at (15,4) {} edge[->, red, opacity=.5] (14,4);
+\node at (14,4) {} edge[<-, green!50!black, bend left, thick, in=160] (7,2);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node at (15,4) {} edge[->, green!50!black, thick] (14,4);
+\node at (14,4) {} edge[<-, black, bend left, in=160] (7,2);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node[label={[label distance=-.5em]\tiny (13,4)}] at (13,4) {};
+\node at (15,4) {} edge[->] (14,4);
+\node at (14,4) {} edge[<-, black, bend left, in=160] (7,2);
+\node at (14,4) {} edge[->, red, thick] (13,4);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node[label={[label distance=-.5em]\tiny (13,4)}] at (13,4) {};
+\node[label={[label distance=-.5em]\tiny (6,2)}] at (6,2) {};
+\node at (15,4) {} edge[->] (14,4);
+\node at (14,4) {} edge[->, green!50!black, thick, bend left, in=160] (7,2);
+\node at (14,4) {} edge[->, red, opacity=.5] (13,4);
+\node at (13,4) {} edge[->, dotted, green!50!black, thick, bend left, in=190] (6,2);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node[label={[label distance=-.5em]\tiny (13,4)}] at (13,4) {};
+\node[label={[label distance=-.5em]\tiny (6,2)}] at (6,2) {};
+\node at (15,4) {} edge[->] (14,4);
+\node at (14,4) {} edge[->, green!50!black, bend left, in=160, opacity=.5] (7,2);
+\node at (14,4) {} edge[->, red, opacity=.5] (13,4);
+\node at (13,4) {} edge[->, dotted, green!50!black, bend left, in=190, opacity=.5] (6,2);
+\node at (7,2) {} edge [->, red, thick] (6,2);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node[label={[label distance=-.5em]\tiny (13,4)}] at (13,4) {};
+\node[label={[label distance=-.5em]\tiny (6,2)}] at (6,2) {};
+\node at (15,4) {} edge[->] (14,4);
+\node at (14,4) {} edge[->, green!50!black, bend left, in=160, opacity=.5] (7,2);
+\node at (14,4) {} edge[->, red, opacity=.5] (13,4);
+\node at (13,4) {} edge[->, dotted, green!50!black, bend left, in=190, opacity=.5] (6,2);
+\node at (7,2) {} edge [->, red, opacity=.5] (6,2);
+
+\node at (7,2) {} edge[->, green!50!black, thick, bend left] (3,1);
+\node at (6,2) {} edge[->, dotted, green!50!black, thick, bend left, in=160] (3,1);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node[label={[label distance=-.5em]\tiny (13,4)}] at (13,4) {};
+\node[label={[label distance=-.5em]\tiny (6,2)}] at (6,2) {};
+\node at (15,4) {} edge[->] (14,4);
+\node at (14,4) {} edge[->, green!50!black, bend left, in=160, opacity=.5] (7,2);
+\node at (14,4) {} edge[->, red, opacity=.5] (13,4);
+\node at (13,4) {} edge[->, dotted, green!50!black, bend left, in=190, opacity=.5] (6,2);
+\node at (7,2) {} edge [->, red, opacity=.5] (6,2);
+
+\node at (6,2) {} edge[<-, green!50!black, thick, bend left, in=160] (3,1);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node[label={[label distance=-.5em]\tiny (13,4)}] at (13,4) {};
+\node[label={[label distance=-.5em]\tiny (6,2)}] at (6,2) {};
+\node at (15,4) {} edge[->] (14,4);
+\node at (14,4) {} edge[->, green!50!black, bend left, in=160, opacity=.5] (7,2);
+\node at (14,4) {} edge[->, red, opacity=.5] (13,4);
+\node at (13,4) {} edge[->, dotted, green!50!black, bend left, in=190, opacity=.5] (6,2);
+\node at (7,2) {} edge [->, green!50!black, thick] (6,2);
+\node at (6,2) {} edge[<-, bend left, in=160] (3,1);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node[label={[label distance=-.5em]\tiny (13,4)}] at (13,4) {};
+\node[label={[label distance=-.5em]\tiny (6,2)}] at (6,2) {};
+\node at (15,4) {} edge[->] (14,4);
+\node at (14,4) {} edge[<-, bend left, in=160] (7,2);
+\node at (14,4) {} edge[->, red, opacity=.5] (13,4);
+\node at (13,4) {} edge[<-, green!50!black, thick, bend left, in=190] (6,2);
+\node at (7,2) {} edge [->] (6,2);
+\node at (6,2) {} edge[<-, bend left, in=160] (3,1);
+\end{pointgrid}
+
+\begin{pointgrid}
+\node[label={[label distance=-.5em]\tiny (0,0)}] at (0,0) {} edge[bend right, ->] (1,0);
+\node[label={[label distance=-.5em]\tiny (1,0)}] at (1,0) {} edge[bend right, ->] (3,1);
+\node[label={[label distance=-.5em]\tiny (3,1)}] at (3,1) {} edge[bend right, ->] (7,2);
+\node[label={[label distance=-.5em]\tiny (7,2)}] at (7,2) {} edge[bend right, ->] (15,4);
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (15,4)}] at (15,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (14,4)}] at (14,4) {};
+\node[draw, circle, inner sep=0.15em, label={[label distance=-.3em]\tiny (13,4)}] at (13,4) {};
+\node[label={[label distance=-.5em]\tiny (6,2)}] at (6,2) {};
+\node at (15,4) {} edge[->] (14,4);
+\node at (14,4) {} edge[<-, bend left, in=160] (7,2);
+\node at (14,4) {} edge[->, green!50!black, thick] (13,4);
+\node at (13,4) {} edge[<-, bend left, in=190] (6,2);
+\node at (7,2) {} edge [->] (6,2);
+\node at (6,2) {} edge[<-, bend left, in=160] (3,1);
+\end{pointgrid}
+\end{document}

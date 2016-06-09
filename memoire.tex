@@ -1,0 +1,159 @@
+\documentclass[11pt,twoside]{memoireuqam1.3}
+
+\usepackage{todonotes}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ocr-b]{ocr}
+\usepackage[french]{babel}
+\usepackage{subcaption}
+\usepackage{captcont}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{trees,backgrounds, calc, positioning, shapes, matrix}
+\usepackage{xspace} % Pour ajouter un espace a une commande voir \noir et \blanc
+\usepackage{csquotes}
+\usepackage{array}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{comment}
+\usepackage{relsize}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{pdfpages}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{listings}
+
+% Blocs théorèmes
+\newtheorem{definition}{Définition}
+\newtheorem*{definition*}{Définition}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{theorem}{Théorème}
+\newtheorem{lemma}{Lemme}
+\newtheorem*{exercice*}{Exercice}
+\newtheorem*{exemple*}{Exemple}
+\newenvironment{preuve}{{\bf Preuve.}}{\hfill$\qed$}
+\newenvironment{demonstration}{{\bf Démonstration.}}{$\qed$}
+
+
+% Todos
+\newcommand{\todoalex}[1]{\todo[inline]{Alexandre : #1}}
+\newcommand{\todojerome}[1]{\todo[inline, color=green]{Jérôme : #1}}
+
+% Macros
+\include{macros-tikz}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\F}{\mathcal{F}}
+\renewcommand{\O}{\mathcal{O}}
+% notation "such that" { (x,y) \st x^2+y^2=0 }
+\newcommand{\st}{\mathrel{}\middle|\mathrel{}}
+
+\newcommand{\verifier}[1]{{\color{red} #1}}
+\newcommand{\Go}{\mbox{\em go}\xspace}
+
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\W}{\mathbf{W}}
+
+\newcommand{\thickhline}{\noalign{\hrule height 0.8pt}}
+\newcommand{\thickvline}{\vrule width .8pt}
+
+\newcommand{\conv}[1]{\text{Conv}(#1)}
+
+% Nombres encerclés
+% http://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1.5pt] (char) {#1};}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+% Traductions d'algorithmes
+\floatname{algorithm}{Algorithme}
+\renewcommand{\algorithmicrequire}{\textbf{Préconditions:}}
+\renewcommand{\algorithmicensure}{\textbf{Postconditions:}}
+\renewcommand{\algorithmicend}{\textbf{fin}}
+\renewcommand{\algorithmicif}{\textbf{si}}
+\renewcommand{\algorithmicthen}{\textbf{alors}}
+\renewcommand{\algorithmicelse}{\textbf{sinon}}
+\renewcommand{\algorithmicfor}{\textbf{pour}}
+\renewcommand{\algorithmicforall}{\textbf{pour tout }}
+\renewcommand{\algorithmicdo}{\textbf{faire}}
+\renewcommand{\algorithmicwhile}{\textbf{tant que}}
+\renewcommand{\algorithmicreturn}{\textbf{retourner}}
+
+
+%\usepackage{hyperref}
+\usepackage{url}
+\newcommand{\href}[1]{\url{#1}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%
+% Pour la page titre
+%%%%%%%%%%%%%%%%%%%%
+\title{G\'en\'eration exhaustive de polyominos}
+\author{J\'er\^ome Tremblay} % on doit utiliser les codes d'accents dans "author".
+\degreemonth{Mai}
+\degreeyear{2016}
+\uqammemoire
+
+\thispagestyle{empty}        % La page titre n'est pas numérotée
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%
+% Page préliminaires
+%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand \listfigurename{LISTE DES FIGURES}
+\renewcommand \appendixname{APPENDICE}
+\renewcommand \figurename{Figure}
+\renewcommand \tablename{Tableau}
+
+\pagenumbering{roman} % numérotation des pages en chiffres romains
+\addtocounter{page}{1} % Pour que les remerciements commencent à la page ii
+
+\include{remerciements}
+
+\tableofcontents % Pour générer la table des matières
+\listoffigures % Pour générer la liste des figures
+\listoftables % Pour générer la liste des tableaux
+\include{resume}
+
+
+%%%%%%%%%%%%%%%%%%%%
+% Document principal
+%%%%%%%%%%%%%%%%%%%%
+
+\parindent=0ex % Facultatif
+% pour qu'il n'y ait pas  de renfoncement à chaque alinéa
+
+\include{introduction}
+\include{chapitre-existence}
+\include{chapitre-chemins}
+\include{chapitre-generation} 
+
+\include{conclusion}
+%\include{apendice-preuves-supplementaires}
+
+%%%%%%%%%%%%%%%%%%%%
+% Page liminaires
+%%%%%%%%%%%%%%%%%%%%
+
+%\nocite{*}
+\bibliographystyle{apalike-uqam}
+\bibliography{Bibliographie}
+
+%\include{programme}
+
+\end{document}

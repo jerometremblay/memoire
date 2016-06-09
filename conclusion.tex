@@ -1,0 +1,15 @@
+% !TEX root = memoire.tex
+
+\begin{conclusion}
+Et voilà. Un chapitre de ma vie qui s'achève.
+
+Le sujet est évidemment loin d'être épuisé. L'un des aspects auquel je me suis intéressé sans malheureusement avoir le temps d'en approfondir les détails est l'utilisation du mot de Lyndon associé à un mot de contour pour obtenir un point canonique sur le bord du polyomino plutôt que de confiner le polyomino dans le demi-plan pour obtenir le point $W$. Ceci imposerait des contraintes tout au long du mot et permettrait ainsi à chaque étape d'élaguer des branches de l'arbre de recherche. Par contre l'absence de contrainte dans le demi plan implique des changements majeurs dans le calcul du chemin le plus court, qu'on pourrait même devoir abandonner complètement. Il serait intéressant de voir l'effet net de ces deux facteurs sur le nombre de parties à examiner.
+
+D'autre part, combiné avec l'utilisation de l'alphabet des premières différences, ceci nous permettrait d'énumérer les gominos à rotation près. En fait, on devrait pouvoir utiliser exactement le même algorithme pour générer les gominos fixes ou à rotation près simplement en utilisant des alphabets différents. 
+
+Du coté de l'algorithme de calcul des distances, quelques optimisations pourraient encore être implémentées. En effet, une fois les pierres noires atteintes il est inutile de calculer les valeurs précises des autres intersections: le prochain coup est soit sur une pierre noire (et donc n'ajoute pas de pierre), soit sur une intersection vide (et ajoute exactement une pierre). Ceci améliorerait les performances mais pas la classe de complexité de l'algorithme. Il serait intéressant de chercher un algorithme qui élimine encore plus rapidement les branches ne contenant pas de solutions. La nature incrémentale de la construction des chemins permet d'espérer un meilleur algorithme où on n'aurait pas à recalculer toutes les distances.
+
+Le code source du programme de génération ainsi que celui de ce document et de ses figures est disponible sur Github à l'adresse https://github.com/jerometremblay/memoire, en espérant que cela puisse éventuellement être utile à quelqu'un.
+
+Merci de m'avoir lu jusqu'à la fin.
+\end{conclusion}

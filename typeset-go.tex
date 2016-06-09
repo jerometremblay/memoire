@@ -1,0 +1,19 @@
+% Typesetting de Go
+\newcommand{\labeledblackstone}[1]{ \begin{tikzpicture} 	\begin{scope}     	\fill[black] (0,0) circle (0.45);     	\clip (0,0) circle (0.45);     	\shade[outer color=black, inner color=black!30] (-0.15,0.5) circle (0.7); 	\end{scope}         \node[scale=5]{\textcolor{white}{#1}}; \end{tikzpicture} }
+\newcommand{\blackstone}{ \labeledblackstone{} }
+\newcommand{\labeledwhitestone}[1]{ \begin{tikzpicture} 	\begin{scope}     	\fill[white!80!black] (0,0) circle (0.45);   	\clip (0,0) circle (0.45);     	\shade[outer color=white!80!black, inner color=white] (-0.15,0.5) circle (0.7); 	\end{scope}         \node[scale=5]{#1}; \end{tikzpicture} }
+\newcommand{\whitestone}{ \labeledwhitestone{} }
+\newcommand{\labeledredstone}[1]{ \begin{tikzpicture}        \begin{scope}        \fill[red] (0,0) circle (0.45);        \clip (0,0) circle (0.45);        \shade[outer color=red, inner color=red!30] (-0.15,0.5) circle (0.7);        \end{scope}        \node[scale=5]{\textcolor{white}{#1}}; \end{tikzpicture} } \newcommand{\redstone}{ \labeledredstone{} }
+\newcommand{\rrm}[2][]{ \node at #2 {\labeledredstone{#1}}; }
+% Goban avec un seul c\^ot\'e 
+\newcommand{\goban}[2]{ \clip (-0.7, -0.7) rectangle (#1.7-1,#2.7-1); \fill[color=brown, ultra thick] (-0.7,-0.7) rectangle (#1,#2); 
+\draw (0,-1) grid (#1,#2+1); }
+% Goban sans bordure 
+\newcommand{\gobanc}[2]{ \clip (-0.7, -0.7) rectangle (#1.7-1,#2.7-1); \fill[color=wood] (-0.7,-0.7) rectangle (#1,#2); \draw (-1,-1) grid (#1+1,#2+1); }
+% Goban en coin 
+\newcommand{\gobancoin}[2]{ \clip (-0.7, -0.7) rectangle (#1.7-1,#2.7-1); \fill[color=wood] (-0.7,-0.7) rectangle (#1,#2); \draw (0,0) grid (#1,#2); }
+\newcommand{\bm}[2][]{ \node at #2 {\labeledblackstone{#1}}; }
+\newcommand{\wm}[2][]{ \node at #2 {\labeledwhitestone{#1}}; }
+\newcommand{\kifu}[3][scale=.4]{ \begin{tikzpicture}[#1, every node/.style={#1, minimum size=1cm}, node distance=1cm] \goban{#2}{#2} #3 \end{tikzpicture} }
+\newcommand{\kifuc}[3][scale=.4]{ \begin{tikzpicture}[#1, every node/.style={#1, minimum size=1cm}, node distance=1cm] \gobanc{#2}{#2} #3 \end{tikzpicture} }
+\newcommand{\kifucoin}[3][scale=.4]{ \begin{tikzpicture}[#1, every node/.style={#1, minimum size=1cm}, node distance=1cm] \gobanc{#2}{#2} #3 \end{tikzpicture} }
