@@ -2,7 +2,7 @@
 
 Algorithmique des polyominos
 
-PDF : [Mémoire - Jérôme Tremblay - Dépôt Final 2.pdf](Mémoire - Jérôme Tremblay - Dépôt Final 2.pdf)
+PDF : [Mémoire - Jérôme Tremblay - Dépôt Final 2.pdf](https://github.com/jerometremblay/memoire/blob/master/M%C3%A9moire%20-%20J%C3%A9r%C3%B4me%20Tremblay%20-%20D%C3%A9p%C3%B4t%20Final%202.pdf)
 
 ## Résumé ##
 
